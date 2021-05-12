@@ -1,7 +1,6 @@
 import React from "react";
+import { Animation } from "./components";
 
-function App() {
-  return <div className="App">React Animation Pack</div>;
-}
-
-export default App;
+export const App: React.FC = () => {
+  return <Animation type={"cat"} playing={true} />;
+};
