@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import lottie from "lottie-web";
 import styled from "styled-components/macro";
 
-import { animations } from "~src/utils/animations";
+import { animationRepository } from "~src/animationRepository";
 
 const AnimationContainer = styled.div`
   margin: auto;
@@ -17,24 +17,12 @@ interface AnimationProps {
 export const Animation: React.FC<AnimationProps> = ({ type, playing }) => {
   useEffect(() => {
     const animationContainer = document.querySelector("#animation");
-    let currentAnimation = animations[0].file;
-
-    const changeAnimation = (type: string) => {
-      animations.map((animation) => {
-        if (animation.type === type) {
-          currentAnimation = animation.file;
-          if (typeof currentAnimation === "string") {
-            currentAnimation = JSON.parse(currentAnimation);
-          }
-        }
-      });
-    };
-    changeAnimation(type);
+    const animation = animationRepository.get(type);
 
     if (animationContainer) {
       lottie.loadAnimation({
         container: animationContainer,
-        animationData: currentAnimation,
+        animationData: animation.file,
         renderer: "svg",
         loop: true,
         autoplay: playing,
