@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import lottie from "lottie-web";
 import styled from "styled-components/macro";
 
@@ -6,7 +6,6 @@ import { animationRepository } from "~src/animationRepository";
 
 const AnimationContainer = styled.div`
   margin: auto;
-  width: 25%;
 `;
 
 interface AnimationProps {
@@ -15,13 +14,13 @@ interface AnimationProps {
 }
 
 export const Animation: React.FC<AnimationProps> = ({ type, playing }) => {
+  const animationContainer = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    const animationContainer = document.querySelector("#animation");
     const animation = animationRepository.get(type);
 
-    if (animationContainer) {
+    if (animationContainer.current) {
       lottie.loadAnimation({
-        container: animationContainer,
+        container: animationContainer.current,
         animationData: animation.file,
         renderer: "svg",
         loop: true,
@@ -30,5 +29,5 @@ export const Animation: React.FC<AnimationProps> = ({ type, playing }) => {
     }
   }, [playing, type]);
 
-  return <AnimationContainer id="animation" />;
+  return <AnimationContainer ref={animationContainer} />;
 };

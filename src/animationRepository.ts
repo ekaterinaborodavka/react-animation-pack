@@ -1,17 +1,17 @@
 import { defaultAnimations } from "~src/utils/defaultAnimations";
 
-interface animationType {
+interface AnimationType {
   type: string;
   file: string | Record<string, unknown>;
 }
 class AnimationRepository {
-  private animations: animationType[];
+  private animations: AnimationType[];
 
-  constructor(animations: animationType[]) {
+  constructor(animations: AnimationType[]) {
     this.animations = animations;
   }
 
-  add(type: string, animation: string | Record<string, unknown>): animationType[] {
+  add(type: string, animation: string | Record<string, unknown>): AnimationType[] {
     let animationFile = animation;
     if (typeof animation === "string") {
       animationFile = JSON.parse(animation);
@@ -24,14 +24,12 @@ class AnimationRepository {
     return this.animations;
   }
 
-  get(type: string): animationType {
-    let currentAnimation = this.animations[0];
-    this.animations.find((animation) => {
-      if (animation.type === type) {
-        currentAnimation = animation;
-      }
-    });
-    return currentAnimation;
+  get(type: string): AnimationType {
+    const currentAnimation = this.animations.find((animation) => animation.type === type);
+    if (currentAnimation) {
+      return currentAnimation;
+    }
+    throw new Error("Animation not found");
   }
 }
 
