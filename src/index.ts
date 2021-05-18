@@ -1,2 +1,2 @@
-export * from "./Animation";
-export * from "./animationRepository";
+export * from "./Animation/Animation";
+export * from "./animationRepository/animationRepository";

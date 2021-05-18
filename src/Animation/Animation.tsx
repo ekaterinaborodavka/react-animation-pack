@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import lottie from "lottie-web";
 import styled from "styled-components/macro";
 
-import { animationRepository } from "~src/animationRepository";
+import { animationRepository } from "~src/animationRepository/animationRepository";
 
 const AnimationContainer = styled.div`
   margin: auto;
