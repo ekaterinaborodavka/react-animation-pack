@@ -1,10 +1,10 @@
 import { defaultAnimations } from "~src/utils/defaultAnimations";
 
-interface AnimationType {
+export interface AnimationType {
   type: string;
   file: string | Record<string, unknown>;
 }
-class AnimationRepository {
+export class AnimationRepository {
   private animations: AnimationType[];
 
   constructor(animations: AnimationType[]) {
