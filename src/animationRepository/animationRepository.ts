@@ -1,6 +1,6 @@
 import { defaultAnimations } from "~src/utils/defaultAnimations";
 
-export interface AnimationType {
+interface AnimationType {
   type: string;
   file: string | Record<string, unknown>;
 }

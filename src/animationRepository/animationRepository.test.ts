@@ -6,14 +6,6 @@ const defaultAnimations = require("~src/utils/defaultAnimations");
 const animationRepository = new AnimationRepository(defaultAnimations);
 
 describe("AnimationRepository methods", () => {
-  it("add: should be defined", () => {
-    expect(animationRepository.add).toBeDefined();
-  });
-
-  it("get: should be defined", () => {
-    expect(animationRepository.get).toBeDefined();
-  });
-
   it("get: should get current animation", () => {
     const type = "cat";
     const result = {
@@ -23,7 +15,7 @@ describe("AnimationRepository methods", () => {
     expect(animationRepository.get(type)).toEqual(result);
   });
 
-  it("get: should throw error", () => {
+  it("get: should throw error if type of animation not found", () => {
     const type = "";
     expect(() => animationRepository.get(type)).toThrow("Animation not found");
   });
