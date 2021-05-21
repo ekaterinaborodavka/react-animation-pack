@@ -33,4 +33,14 @@ export class AnimationRepository {
   }
 }
 
-export const animationRepository = new AnimationRepository(defaultAnimations);
+interface IAnimationRepository {
+  getAnimationRepository(): AnimationRepository;
+}
+
+class AnimationRepositoryMock implements IAnimationRepository {
+  getAnimationRepository(): AnimationRepository {
+    return new AnimationRepository(defaultAnimations);
+  }
+}
+
+export const animationRepository = new AnimationRepositoryMock();

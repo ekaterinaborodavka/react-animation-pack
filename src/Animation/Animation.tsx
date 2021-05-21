@@ -16,7 +16,7 @@ interface AnimationProps {
 export const Animation: React.FC<AnimationProps> = ({ type, playing }) => {
   const animationContainer = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    const animation = animationRepository.get(type);
+    const animation = animationRepository.getAnimationRepository().get(type);
 
     if (animationContainer.current) {
       lottie.loadAnimation({
