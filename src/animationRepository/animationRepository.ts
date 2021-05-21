@@ -4,7 +4,7 @@ interface AnimationType {
   type: string;
   file: string | Record<string, unknown>;
 }
-class AnimationRepository {
+export class AnimationRepository {
   private animations: AnimationType[];
 
   constructor(animations: AnimationType[]) {
@@ -33,4 +33,4 @@ class AnimationRepository {
   }
 }
 
-export const animationRepository = new AnimationRepository(defaultAnimations);
+export const localAnimationRepository = new AnimationRepository(defaultAnimations);
